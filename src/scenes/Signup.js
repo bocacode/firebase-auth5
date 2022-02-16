@@ -1,12 +1,22 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
+import { app } from '../ConnectAuth'
 
-export default function Signup() {
+export default function Signup({ setUser }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    alert(`Trying to sign-up as ${email}`);
+    const auth = getAuth(app);
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(result => {
+        setUser(result.user)
+        // navigate to home
+        navigate('/')
+      })
+      .catch(alert)
   }
   return (
     <>
