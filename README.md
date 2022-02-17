@@ -11,3 +11,7 @@ Credentials file not needed
 for more info on authentication [this is a link](https://firebase.com)
 
 ![screenshot of the project](screenshot.png)
+
+
+### Short video
+![screen recording](screenrecording.gif)
